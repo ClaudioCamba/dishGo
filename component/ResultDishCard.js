@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 31,
     backgroundColor: "#3AD6A7",
-    height: 200,
+    height: 180,
     margin: 10,
   },
   contentContainer: {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   image: {
     width: 150, // Adjust width as needed
     borderRadius: 31,
-    height: 200,
+    height: 180,
   },
   cardText:{
     fontSize: 15,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   cardTextBold:{
     fontWeight: "bold",
-    fontSize: 19,
+    fontSize: 16,
     color: "white",
     marginBottom: 5,
   },
