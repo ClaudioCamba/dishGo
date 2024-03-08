@@ -3,7 +3,7 @@ import * as Location from "expo-location";
 import { StyleSheet, View, Pressable } from "react-native";
 import { List } from "react-native-paper";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { getPlacesById } from "../utils/getPlacesById";
+import getPlacesById from "../utils/getPlacesById";
 import { LocationContext } from "../context/LocationContext";
 import { ScrollView } from "react-native-virtualized-view";
 
