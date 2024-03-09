@@ -18,7 +18,7 @@ const SearchArea = () => {
 
 
   useEffect(() => {
-    handleUserLocation()
+    if(!placeId)handleUserLocation()
     if (placeId) {
       getPlacesById(placeId)
         .then((response) => {
