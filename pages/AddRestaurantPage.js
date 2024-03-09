@@ -47,7 +47,7 @@ export default function AddRestaurantPage({navigation}) {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [errors, setErrors] = React.useState(null)
 
-  const cuisines = ["Mexican", "Italian", "Asian", "Pub", "Seafood"];
+  const cuisines = ["Mexican", "Italian", "Asian", "Pub", "Café"];
 
   React.useEffect(()=>{
     if (session){
