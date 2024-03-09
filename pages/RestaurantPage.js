@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#FFF",
     margin: 10,
     overflow: "hidden",
-    borderRadius: 31,
+    borderRadius: 18,
     padding: 20,
   },
   loadingContainer: {
