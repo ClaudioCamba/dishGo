@@ -1,14 +1,17 @@
 # DishGo - find the dish you've been craving 😋 🍽️
 
-An aesthetically appealing Android app that that allows users to find a specific food item served by a restaurant in their area.
+A user friendly Android app that that allows users to find a restaurant that serves a specific food item in their area.
 
-## Features
+## Demo
 
-- Responsive search suggestions
-- Consistent branding and aesthetic interface
-- Sign in, sign out and upload avatar
-- Tab navigation
-- Partners section
+Watch the full demo on [YouTube](https://www.youtube.com/watch?v=yv9bBnSZhEs) ⭐
+
+<img src="./assets/demo/faq.gif" width="100"/>
+<img src="./assets/demo/location.gif" width="100"/>
+<img src="./assets/demo/food-search.gif" width="100"/>
+<img src="./assets/demo/list-results.gif" width="100"/>
+<img src="./assets/demo/map-view.gif" width="100"/>
+
 
 ## Frontend
 
@@ -72,27 +75,21 @@ npm run start
 
  For a detailed setup guide, see the [docs](https://reactnative.dev/docs/environment-setup).
 
-### Future features
+## Future features
 
 - Sort results by cuisine and dietary flags
 - Liked dishes section
 - Personalised UI e.g. first name, surname
 - Random dish button
 
-## Contact
-
-- Portfolio [Contact Form](https://simranamin.com/#contact)
-- Connect with me on [LinkedIn](https://www.linkedin.com/in/simran-amin/)
-
-
 ## Contributors
 
 This app was ideated, planned and built in a co-ordinated effort between the following individuals:
 
+- Simran Amin [GitHub](https://github.com/noepse)
 - Charlie Tahsin [GitHub](https://github.com/ChazzaT18)
 - Claudio Camba [GitHub](https://github.com/ClaudioCamba)
 - Daniel Gruitt [GitHub](https://github.com/dan-gruitt)
-- Simran Amin (Me!) [GitHub](https://github.com/noepse)
 - Hannah Tinsley McRink [GitHub](https://github.com/HannahTinsleyMcRink)
 
 ## Further credits and useful links
