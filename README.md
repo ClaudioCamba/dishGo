@@ -6,7 +6,7 @@ A user friendly Android app that that allows users to find a restaurant that ser
 
 Watch the full demo on [YouTube](https://www.youtube.com/watch?v=yv9bBnSZhEs) ⭐
 
-<div style="display: flex; gap: 10"><img src="./assets/demo/faq.gif" width="100"/>
+<div style="display: flex; gap: 10px"><img src="./assets/demo/faq.gif" width="100"/>
 <img src="./assets/demo/location.gif" width="100"/>
 <img src="./assets/demo/food-search.gif" width="100"/>
 <img src="./assets/demo/list-results.gif" width="100"/>
@@ -86,10 +86,10 @@ npm run start
 
 This app was ideated, planned and built in a co-ordinated effort between the following individuals:
 
-- Simran Amin [GitHub](https://github.com/noepse)
 - Charlie Tahsin [GitHub](https://github.com/ChazzaT18)
 - Claudio Camba [GitHub](https://github.com/ClaudioCamba)
 - Daniel Gruitt [GitHub](https://github.com/dan-gruitt)
+- Simran Amin [GitHub](https://github.com/noepse)
 - Hannah Tinsley McRink [GitHub](https://github.com/HannahTinsleyMcRink)
 
 ## Further credits and useful links
