@@ -12,7 +12,7 @@ export default function ConfirmDeletePopUp(props) {
 
   return (!itemToDelete ? null : (
     <Portal>
-    <Dialog visible = {isDialogVisible} onDismiss={handleDismiss}>
+    <Dialog visible = {isDialogVisible} onDismiss={handleDismiss}  style = {styles.container}>
       <Dialog.Title>Delete item</Dialog.Title>
       <Dialog.Content>
       <Text variant="bodyLarge" styles = {styles.title}>Are you sure you want to delete the following item?</Text>
@@ -42,6 +42,9 @@ export default function ConfirmDeletePopUp(props) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#fff',
+  },
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
