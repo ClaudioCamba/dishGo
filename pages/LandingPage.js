@@ -79,30 +79,40 @@ export default function LandingPage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  imgWrap: {
-    display: "flex",
+  mainContainer: {
+    // height: '100vh',
     flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#FFF",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  imgWrap: {
+    paddingTop: 75,
+    display: "flex",
+    // flex: 2,
     justifyContent: "center",
     alignItems: "center",
+    // borderWidth: 1,
+    width: "100%"
   },
   image: {
     width: 336,
     height: 336,
     overflow: "hidden",
   },
-  mainContainer: {
-    height: '100vh',
-    flex: 1,
-    flexDirection: "column",
-    backgroundColor: "#FFF",
-    justifyContent: "space-between", // Adjust mainContainer to justify content between its children
-  },
   introButton: {
+    // borderWidth: 1,
+    flex: 1,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
-    padding: 26,
+    // padding: 26,
+    width: "100%",
+    gap: 20
   },
   button: {
     width: 139,
