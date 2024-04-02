@@ -29,7 +29,7 @@ export default function Header() {
   const navigation = useNavigation();
 
   return (
-    <Appbar.Header mode="medium">
+    <Appbar.Header style={styles.header} mode="medium">
       <View style={styles.container}>
         <View>
           <Pressable onPress={() => navigation.navigate("LandingPage")}>
@@ -62,6 +62,17 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
+  },
   container: {
     display: "flex",
     flexDirection: "row",

@@ -6,7 +6,7 @@ export default function Faq({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.containerOuter}>
       <View style = {styles.titleContainer}>
-        <Text style={styles.title}>How does this work?</Text>
+        <Text style={styles.title}>How does it work?</Text>
       </View>
 
       <View style={styles.container}>
@@ -30,7 +30,7 @@ export default function Faq({ navigation }) {
           Check the map, plan your stroll and get ready to embark on a delicious journey.
         </Text>
       </View>
-      <>
+ 
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate("HomePage")}
@@ -39,16 +39,20 @@ export default function Faq({ navigation }) {
             Lets Go!
           </Text>
         </Pressable>
-      </>
+   
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   containerOuter: {
+    flex: 1,
+    justifyContent: "space-between",
+    // alignContent: "center",
     alignItems: "center",
     padding: 15,
     gap: 20,
+    backgroundColor:'#FFF'
   },
   container: {
     alignItems: "center",
@@ -59,11 +63,13 @@ const styles = StyleSheet.create({
     color: "#4C5B61",
     marginTop: 20,
     marginBottom: 10,
-  },
-  titleContainer:{
+    textAlign: "center",
+    paddingBottom: 10,
     borderBottomColor: "#3AD6A7",
     borderBottomWidth: 4,
-    marginBottom: 10,
+  },
+  titleContainer:{
+    width: 128,
   },
   text: {
     fontSize: 16,
@@ -77,8 +83,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   button: {
-    width: 109,
-    height: 45,
+    width: 139,
+    height: 57,
     backgroundColor: "#4C5B61",
     borderRadius: 29,
     display: "flex",
@@ -86,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
+    marginBottom: 60,
   },
   buttonText: {
     color: "#FFF",
