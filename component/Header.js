@@ -63,6 +63,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
+    // borderBottomWidth: 1,
     backgroundColor: "#FFF",
     shadowColor: "#000",
     shadowOffset: {
@@ -71,7 +72,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-    elevation: 15,
+    elevation: 15, 
+    zIndex:999,  
   },
   container: {
     display: "flex",
