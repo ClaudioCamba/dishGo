@@ -111,19 +111,6 @@ const SearchArea = () => {
     />
   </View>
 </View>
-{/* <View>
-<Picker
-        style={{color: "#4C5B61",  fontWeight: "bolder", marginBottom: -20}}
-        selectedValue={radius}
-        onValueChange={(itemValue, itemIndex) => setRadius(itemValue)}
-      >
-        <Picker.Item label="+0.5 miles" value={0.5} />
-        <Picker.Item label="+1 mile" value={1} />
-        <Picker.Item label="+3 miles" value={3} />
-        <Picker.Item label="+5 miles" value={5} />
-        <Picker.Item label="+10 miles" value={10} />
-      </Picker>
-</View> */}
 
     </ScrollView>
   );

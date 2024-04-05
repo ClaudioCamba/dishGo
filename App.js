@@ -18,6 +18,7 @@ import HomePageBusiness from "./pages/HomePageBusiness";
 import { CurrentPageProvider } from "./context/CurrentPageContext";
 import { UserProvider } from "./context/UserContext";
 import { LogBox } from 'react-native';
+import { EventProvider } from 'react-native-outside-press';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export default function App() {
     <CurrentPageProvider>
     <LocationProvider>
       <PaperProvider>
+      <EventProvider>
         <NavigationContainer>
         <Header />
           <Stack.Navigator>
@@ -84,6 +86,7 @@ export default function App() {
             /> */}
           </Stack.Navigator>
         </NavigationContainer>
+        </EventProvider>
       </PaperProvider>
     </LocationProvider>
     </CurrentPageProvider>

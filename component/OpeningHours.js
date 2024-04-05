@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { List, Surface } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-import RestaurantInfo from "../component/RestaurantInfo";
+import RestaurantInfo from "./RestaurantInfo";
 
 const OpeningHours = ({styles, restaurantPlace, restaurant}) => {
   const [expanded, setExpanded] = React.useState(true);
