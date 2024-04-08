@@ -14,15 +14,13 @@ import SearchBar from "../component/SearchBar";
 import SearchArea from "../component/SearchArea";
 
 export default function SearchPage({ navigation }) {
-  // const [userSearch, setUserSearch] = useState("");
+  const [userSearch, setUserSearch] = useState("");
 
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
         <SearchArea />
-        <SearchBar 
-        // setUserSearch={setUserSearch} userSearch={userSearch} 
-        />
+        <SearchBar setUserSearch={setUserSearch} userSearch={userSearch} />
       </View>
 
       <View style={styles.imageWrap}>

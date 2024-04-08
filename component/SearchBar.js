@@ -2,18 +2,16 @@ import * as React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList, Pressable } from 'react-native';
 import { useState, useEffect } from 'react';
 import { getDishesName } from '../utils/getDishes';
-import { filterSuggestions } from '../utils/filterSuggestions';
 import { filterSearch } from '../utils/filterSearch';
 import { List } from 'react-native-paper';
 import { Searchbar, Surface } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
 import OutsidePressHandler from 'react-native-outside-press';
 
-export default function SearchBar() {
+export default function SearchBar({userSearch, setUserSearch}) {
     const navigation = useNavigation();
     const [dishes, setDishes] =  useState([]);
     const [filterDishes, setFilterDishes] =  useState([]);
-    // const [filteredSuggestions, setFilteredSuggestions] =  useState([]);
     const [searchQuery, setSearchQuery] = useState('');
   
   useEffect(() =>{
@@ -26,11 +24,12 @@ export default function SearchBar() {
 
       setSearchQuery((r)=> {
       if (e.length > 2 && filterSearch(dishes, e).length > 0){
-        setFilterDishes(filterSearch(dishes, searchQuery));
+        setFilterDishes(filterSearch(dishes, e));
       } else {
         setFilterDishes([])
       }
 
+      setUserSearch(e)
       return e;
     })
   }
@@ -72,7 +71,7 @@ export default function SearchBar() {
                   <Surface style={styles.surface} elevation={0}>
                     <FlatList
                         data={filterDishes}
-                        renderItem={({ item, index}) => <Pressable onPress={() => {
+                        renderItem={({ item, index}) => <Pressable key={index} onPress={() => {
                         setSearchQuery(item.dish_name);
                         dishSelected(item.dish_name);
                         } }>
