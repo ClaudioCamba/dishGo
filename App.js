@@ -23,7 +23,7 @@ import { EventProvider } from 'react-native-outside-press';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  LogBox.ignoreLogs(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.'])
+  // LogBox.ignoreLogs(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.'])
   return (
 <UserProvider>
     <CurrentPageProvider>

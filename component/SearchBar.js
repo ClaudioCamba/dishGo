@@ -2,33 +2,31 @@ import * as React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList, Pressable } from 'react-native';
 import { useState, useEffect } from 'react';
 import { getDishesName } from '../utils/getDishes';
-import { filterSearch } from '../utils/filterSearch';
+import { filterSuggestions } from '../utils/filterSuggestions';
 import { List } from 'react-native-paper';
 import { Searchbar, Surface } from 'react-native-paper';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import OutsidePressHandler from 'react-native-outside-press';
 
 export default function SearchBar({userSearch, setUserSearch}) {
-    const navigation = useNavigation();
-    const [dishes, setDishes] =  useState([]);
-    const [filterDishes, setFilterDishes] =  useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
+  const navigation = useNavigation();
+  const [dishes, setDishes] =  useState([]);
+  const [filterDishes, setFilterDishes] =  useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   
   useEffect(() =>{
-    getDishesName().then((data)=>{
-      setDishes(data);
-    });
+    getDishesName().then((data)=> setDishes(data));
   },[])
  
   const onChangeText = async (e) =>{
 
       setSearchQuery((r)=> {
-      if (e.length > 2 && filterSearch(dishes, e).length > 0){
-        setFilterDishes(filterSearch(dishes, e));
+      if (e.length > 2 && filterSuggestions(dishes, e).length > 0){
+        setFilterDishes(filterSuggestions(dishes, e));
       } else {
         setFilterDishes([])
       }
-
+   
       setUserSearch(e)
       return e;
     })
@@ -42,7 +40,10 @@ export default function SearchBar({userSearch, setUserSearch}) {
   
     const getItemText = (item, index) =>{
       return (
-        <View  style={[styles.listItem, index % 2 === 0 ? styles.oddItem : styles.evenItem, index === filterDishes.length-1 ? styles.lastItem: null]}>
+        <View  style={[
+          styles.listItem, 
+          index % 2 === 0 ? styles.oddItem : styles.evenItem, 
+          index === filterDishes.length-1 && filterDishes.length >= 4 ? styles.lastItem: null]}>
             <List.Icon color="#A6A6A6" icon="magnify" />
             <Text style={styles.listText}>{item.dish_name}</Text>
         </View>
@@ -51,7 +52,7 @@ export default function SearchBar({userSearch, setUserSearch}) {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <SafeAreaView style={styles.SafeAreaView}>
-          <OutsidePressHandler onOutsidePress={() => console.log(filterDishes)}>
+          <OutsidePressHandler onOutsidePress={() => setFilterDishes([])}>
             <Searchbar
                 onSubmitEditing={(event) => { navigation.navigate('ResultsPage', {dish: userSearch}) }}
                 fontWeight="bold"
@@ -61,7 +62,7 @@ export default function SearchBar({userSearch, setUserSearch}) {
                 iconColor="#3AD6A7"
                 placeholder='Find Dish'
                 onIconPress={()=>{ navigation.navigate('ResultsPage', {dish: userSearch}) }}
-                onClearIconPress={()=>{ setFilterDishes([]) }}
+                onClearIconPress={()=> setFilterDishes([])}
                 onChangeText={onChangeText}
                 value={searchQuery}
                 style={styles.searchBar} />

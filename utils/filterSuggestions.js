@@ -1,47 +1,54 @@
+function compare( a, b ) {
+  if ( a.dish_name < b.dish_name ){
+    return -1;
+  }
+  if ( a.dish_name > b.dish_name ){
+    return 1;
+  }
+  return 0;
+}
+
 export const filterSuggestions = (allDishes, searchDish) => {
-    if (allDishes.length === 0) {
-      return [];
-    }
+  if (allDishes.length === 0) {
+    return [];
+  }
+
+  const splitSearch = searchDish.split(" ");
+  const matchDishes = [];
   
-    const splitSearch = searchDish.split(" ");
-    const matchDishes = [];
-  
-    allDishes.forEach((dish) => {
-      let count = 0;
-      for (let i = 0; i < splitSearch.length; i++) {
-        if (dish.dish_name.toLowerCase().includes(splitSearch[i].toLowerCase())) {
-          count++;
-        }
+  allDishes.forEach((dish) => {
+    let count = 0;
+    for (let i = 0; i < splitSearch.length; i++) {
+      if (dish.dish_name.toLowerCase().includes(splitSearch[i].toLowerCase())) {
+        count++;
       }
-      if (count === splitSearch.length) {
-        matchDishes.push(dish);
+    }
+    if (count === splitSearch.length) {
+      matchDishes.push(dish);
+    }
+  });
+
+  if (matchDishes.length === 0) {
+    allDishes.forEach((dish) => {
+      for (let i = 0; i < splitSearch.length; i++) {
+        if ( dish.dish_name.toLowerCase().includes(splitSearch[i].toLowerCase())) {
+          matchDishes.push(dish);
+        }
       }
     });
-  
-    if (matchDishes.length === 0) {
-      allDishes.forEach((dish) => {
-        for (let i = 0; i < splitSearch.length; i++) {
-          if (
-            dish.dish_name.toLowerCase().includes(splitSearch[i].toLowerCase())
-          ) {
-            matchDishes.push(dish);
-          }
-        }
-      });
-    }
-  
-    const dishNames = matchDishes.map((dish)=>{
-      return dish.dish_name
-    })
-  
-    const uniqueDishNames = [...new Set(dishNames)]; 
-  
-    const uniqueDishes = uniqueDishNames.map((dishName)=>{
-      return {dish_name: dishName}
-    })
+  }
 
-    return uniqueDishes;
-  };
-  
-  export default { filterSuggestions };
-  
+  const dishNames = matchDishes.map((dish)=>{
+    return dish.dish_name
+  })
+
+  const uniqueDishNames = [...new Set(dishNames)]; 
+
+  const uniqueDishes = uniqueDishNames.map((dishName)=>{
+    return {dish_name: dishName}
+  })
+
+  return uniqueDishes.sort(compare);
+};
+
+export default { filterSuggestions };
