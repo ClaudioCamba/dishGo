@@ -74,11 +74,11 @@ export default function ResultsPage({ navigation, route }) {
   return (
     <View style={styles.resultsContainer}>
      <View style={styles.resultHeader}>
-     <Text style={styles.resultHeader}>
-  Results for: <Text style={{ color: "#3AD6A7" }}>{route.params.dish}</Text>
-</Text>
-</View>
-      <ScrollView>
+      <Text style={styles.resultHeader}>
+          Results for: <Text style={{ color: "#3AD6A7" }}>{route.params.dish}</Text>
+      </Text>
+    </View>
+      <ScrollView style={styles.scrollView}>
         <Button
           style={styles.mapViewButton}
           labelStyle={styles.buttonLabel}
@@ -91,7 +91,7 @@ export default function ResultsPage({ navigation, route }) {
           <GoogleMapView mapResults={mapResults} results={results} setMapResults={setMapResults} storeMapResults={storeMapResults}
           restaurants={restaurants}/>
         ) : dataLoaded ? (
-          dishesToShow.map((dish) => (
+          dishesToShow.map((dish, index, all) => (
             <ResultDishCard
               setMapResults={setMapResults}
               mapResults={mapResults}
@@ -100,6 +100,8 @@ export default function ResultsPage({ navigation, route }) {
               dish={dish}
               restaurants={restaurants}
               restaurantsPlaces={restaurantsPlaces}
+              index={index}
+              all={all}
             />
           ))
         ) : (
@@ -114,7 +116,8 @@ export default function ResultsPage({ navigation, route }) {
 
 const styles = StyleSheet.create({
   resultsContainer: {
-    marginBottom: 70,
+    flex: 1,
+    backgroundColor: "#FFF",
   },
   resultHeader: {
     fontSize: 20,
@@ -123,22 +126,21 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 10,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   mapViewButton: {
+    marginHorizontal: 26,
     borderRadius: 45,
     backgroundColor: "#4C5B61",
     color: "#3AD6A7",
     width: '50%',
     marginLeft: '25%',
-    marginBottom: 15,
-    marginTop: 10,
+    marginBottom: 20,
   },
   buttonLabel: {
     fontSize: 14,
     fontWeight: "bold",
     width: "65%",
     color: "white",
-  },
+  }
 });
-// 
