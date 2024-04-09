@@ -9,11 +9,10 @@ import { ScrollView } from "react-native-virtualized-view";
 
 
 const SearchArea = () => {
-  const { location, setLocation, radius, setRadius } =
-    useContext(LocationContext);
+  const { location, setLocation, radius, setRadius } = useContext(LocationContext);
   const GOOGLE_PLACES_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
   const [placeId, setPlaceId] = useState("");
-  const [distance, setDistance] = useState(1);
+  // const [distance, setDistance] = useState(1);
   const [placeholder, setPlaceholder] = useState("Enter Location");
 
 
@@ -93,21 +92,7 @@ const SearchArea = () => {
         setPlaceId(data.place_id);
       }}
       onFail={(error) => console.error(error)}
-      styles={{
-        container: {
-          borderRadius: 45,
-        },
-        textInputContainer: {
-          marginLeft: -5,
-          height: 52,
-        },
-        textInput: {
-          borderRadius: 50,
-          height: 52,
-          fontSize: 16,
-          backgroundColor: "rgba(0,0,0,0)",
-        },
-      }}
+      styles={styles.googleAutoComplete}
     />
   </View>
 </View>
@@ -139,6 +124,21 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 50,
   },
+  googleAutoComplete:{
+    container: {
+      borderRadius: 45,
+    },
+    textInputContainer: {
+      marginLeft: -5,
+      height: 52,
+    },
+    textInput: {
+      borderRadius: 50,
+      height: 52,
+      fontSize: 16,
+      backgroundColor: "rgba(0,0,0,0)",
+    },
+  }
 });
 
 export default SearchArea;

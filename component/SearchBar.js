@@ -10,6 +10,7 @@ import OutsidePressHandler from 'react-native-outside-press';
 
 export default function SearchBar({userSearch, setUserSearch}) {
   const navigation = useNavigation();
+  const currentPage = useRoute();
   const [dishes, setDishes] =  useState([]);
   const [filterDishes, setFilterDishes] =  useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -52,7 +53,7 @@ export default function SearchBar({userSearch, setUserSearch}) {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <SafeAreaView style={styles.SafeAreaView}>
-          <OutsidePressHandler onOutsidePress={() => setFilterDishes([])}>
+          <OutsidePressHandler onOutsidePress={() => currentPage.name ==='SearchPage' ? setFilterDishes([]): null}>
             <Searchbar
                 onSubmitEditing={(event) => { navigation.navigate('ResultsPage', {dish: userSearch}) }}
                 fontWeight="bold"
