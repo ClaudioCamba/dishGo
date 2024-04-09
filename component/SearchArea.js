@@ -63,6 +63,7 @@ const SearchArea = () => {
           <List.Icon color="#3AD6A7" icon="crosshairs" />
         </Pressable>
         <GooglePlacesAutocomplete
+   
           disableScroll={false}
           isRowScrollable={true}
           placeholder={placeholder}
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     },
     textInputContainer: {
       fontWeight: "bold",
-      paddingLeft: 52,
+      paddingLeft: 44,
       height: 52,
     },
     textInput: {
