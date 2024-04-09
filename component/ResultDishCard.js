@@ -20,12 +20,13 @@ const ResultDishCard = ({
   // setCardCount,
   setMapResults,
   storeMapResults,
+  all,
+  index
 }) => {
   const navigation = useNavigation();
   const { location, radius } = useContext(LocationContext);
   const [isVisible, setIsVisible] = useState(false);
   const [results, setResults] = useState(null);
-
   const [imgUri, setImgUri] = useState(null);
 
   useEffect(() => {
@@ -63,7 +64,7 @@ const ResultDishCard = ({
   }
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, all.length-1 === index ? styles.lastItem : null]}>
       <View style={styles.contentContainer}>
         <View style = {styles.leftSide}>
           <Image
@@ -74,77 +75,71 @@ const ResultDishCard = ({
           />
         </View>
         <View style={styles.rightSide}>
-          <Text style={styles.cardTextBold}>{dish.dish_name}</Text>
-          <Text style={styles.cardText}>
-            {results[1].name}
-          </Text>
-          <Text style={styles.cardText}> <Icon name="star" size={13} color="white" /> {results[2].rating}</Text>
+          <Text style={[styles.cardTextBold, styles.doubleLine]}>{dish.dish_name}</Text>
+          <Text style={[styles.cardText, styles.doubleLine]}>{results[1].name}</Text>
+          <Text style={styles.cardText}><Icon name="star" size={13} color="white" /> {results[2].rating}</Text>
           <Text style={styles.cardTextBold}>{`£${dish.price.toFixed(2)}`}</Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        {/* {results[2].url && (
-          <Button
-            icon="map-marker"
-            mode="contained"
-            onPress={() => Linking.openURL(`${results[2].url}`)}
-            style={[styles.button, styles.mapButton]}
-            labelStyle={[styles.buttonLabel, styles.mapButton]}
-            contentStyle={styles.buttonContent}
-          >
-            Open In Maps
-          </Button>
-        )} */}
-
         <IconButton
-    icon="store-marker-outline"
-    iconColor={"#4C5B61"}
-    style= {styles.button}
-    size={40}
-    onPress={() => navigation.navigate("RestaurantPage", { results })}
-  />
+          icon="store-marker-outline"
+          iconColor={"#4C5B61"}
+          style= {styles.button}
+          size={40}
+          onPress={() => navigation.navigate("RestaurantPage", { results })}
+        />
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   loadingContainer: {
+    display: "flex",
     flexDirection: "row", // Ensure content layout is row-based
     alignItems: "flex-start", // Align items to the top of the container
   },
   card: {
     borderRadius: 31,
     backgroundColor: "#3AD6A7",
-    height: 180,
-    margin: 10,
+    marginBottom: 18,
+    marginHorizontal: 26,
   },
   contentContainer: {
+    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    gap: 20,
   },
   leftSide:{
-    flex: 1,
+    flex: 0.67,
   },
   rightSide:{
     flex: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingVertical: 10,
+    display: "flex",
   },
   image: {
-    width: 150, // Adjust width as needed
+    width: 144, // Adjust width as needed
     borderRadius: 31,
-    height: 180,
+    height: 155,
   },
   cardText:{
-    fontSize: 15,
+    fontSize: 14,
     color: "white",
+    paddingHorizontal: 10,
     marginBottom: 5,
   },
   cardTextBold:{
     fontWeight: "bold",
     fontSize: 16,
     color: "white",
+    paddingHorizontal: 10,
     marginBottom: 5,
+  },
+  doubleLine:{
+    maxHeight: 37,
+    overflow: "hidden",
   },
   buttonsContainer:{
     position: "absolute",
@@ -163,6 +158,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#4C5B61",
     color: "white",
   },
+  lastItem: {
+    marginBottom: 40,
+  }
 });
 
 export default ResultDishCard;

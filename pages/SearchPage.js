@@ -34,20 +34,15 @@ export default function SearchPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // borderWidth: 1,
-    // borderColor: 'yellow',
     display: "flex",
     flexDirection: "column",
     alignContent: "center",
     justifyContent: "flex-end",
     backgroundColor: "#3AD6A7",
-    // paddingBottom: 0,
   },
   searchContainer: {
     top: 0,
     paddingTop: 30,
-    // borderWidth: 1,
-    // borderColor: 'red',
     position: "absolute", 
     zIndex:999, 
     width: "100%"
@@ -59,38 +54,11 @@ const styles = StyleSheet.create({
     width: 335, 
     height: 294
   },
-  // headerWrap: {
-  //   alignItems: "center",
-  //   paddingTop:20,
-  //   paddingBottom: 10,
-  //   marginTop: 170,
-  // },
-  // locationHeaderText: {
-  //   color: "#FFF",
-  //   fontWeight: "bold",
-  //   fontSize: 25,
-  //   textAlign: "center",
-  // },  
   headerText: {
     color: "#FFF",
     fontWeight: "bold",
     fontSize: 25,
     textAlign: "center",
     width: 260,
-  },
-  // searchButton: {
-  //   width: 139,
-  //   height: 57,
-  //   backgroundColor: "#4C5B61",
-  //   borderRadius: 29,
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
-  // searchButtonText: {
-  //   color: "#FFF",
-  //   fontWeight: "bold",
-  //   fontSize: 18,
-  // },
+  }
 });
