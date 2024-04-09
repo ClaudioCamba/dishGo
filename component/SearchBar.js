@@ -59,7 +59,9 @@ export default function SearchBar({userSearch, setUserSearch}) {
                 fontWeight="bold"
                 placeholderTextColor="#A9A9AC"
                 mode="bar"
-                elevation={3}
+                elevation={1}
+                selectionColor={'#3AD6A7'}
+                rippleColor="#3AD6A7"
                 iconColor="#3AD6A7"
                 placeholder='Find Dish'
                 onIconPress={()=>{ navigation.navigate('ResultsPage', {dish: userSearch}) }}
@@ -93,20 +95,18 @@ export default function SearchBar({userSearch, setUserSearch}) {
 
 const styles = StyleSheet.create({
   SafeAreaView:{
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    margin: 0,
   },
   searchBar:{
-    marginTop: 10,
-    color:'#FFF',
     zIndex: 10,
     backgroundColor:'#FFFFFF',
     height: 52,
-    width: '100%'
+    width: '100%',
   },
   surface: {
     marginTop: -53,
     paddingTop: 60,
-    // marginBottom: 110,
     alignItems: 'left',
     justifyContent: 'center',
     borderRadius: 26,
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
     backgroundColor:'#FFFFFF',
     maxHeight: 240,
     width: '100%',
-    // paddingBottom: 50,
   },
   listItem:{
     paddingVertical: 8,

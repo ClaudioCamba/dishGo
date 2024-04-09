@@ -5,16 +5,12 @@ import { List } from "react-native-paper";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import getPlacesById from "../utils/getPlacesById";
 import { LocationContext } from "../context/LocationContext";
-import { ScrollView } from "react-native-virtualized-view";
-
 
 const SearchArea = () => {
   const { location, setLocation, radius, setRadius } = useContext(LocationContext);
   const GOOGLE_PLACES_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
   const [placeId, setPlaceId] = useState("");
-  // const [distance, setDistance] = useState(1);
   const [placeholder, setPlaceholder] = useState("Enter Location");
-
 
   useEffect(() => {
     if(!placeId)handleUserLocation()
@@ -62,82 +58,73 @@ const SearchArea = () => {
   };
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      keyboardShouldPersistTaps="handled"
-    >
-<View style={styles.locationSearchWrap}>
-  <View style={styles.searchBar}>
-  <Pressable onPress={handleUserLocation}  style={{
-          fontWeight: "bold",
-          fontSize: 12,
-          color: "#3AD6A7",
-          backgroundColor: "white",
-          height: 52,
-          borderRadius: 50,
-          textAlign: "center",
-          width: 52,
-          paddingTop: 13,
-        }}>
-        <List.Icon color="#3AD6A7" icon="crosshairs" />
-    </Pressable>
-    <GooglePlacesAutocomplete
-      placeholder={placeholder}
-      placeholderTextColor="#A9A9AC" // Set placeholder text color
-      query={{
-        key: GOOGLE_PLACES_API_KEY,
-        language: "en",
-      }}
-      onPress={(data, details = null) => {
-        setPlaceId(data.place_id);
-      }}
-      onFail={(error) => console.error(error)}
-      styles={styles.googleAutoComplete}
-    />
-  </View>
-</View>
-
-    </ScrollView>
+      <View style={styles.searchBar} elevation={3}>
+        <Pressable onPress={handleUserLocation}  style={styles.setLocationIcon}>
+          <List.Icon color="#3AD6A7" icon="crosshairs" />
+        </Pressable>
+        <GooglePlacesAutocomplete
+          disableScroll={false}
+          isRowScrollable={true}
+          placeholder={placeholder}
+          query={{
+            key: GOOGLE_PLACES_API_KEY,
+            language: "en",
+          }}
+          onPress={(data, details = null) => { setPlaceId(data.place_id); }}
+          onFail={(error) => console.error(error)}
+          styles={styles.googleAutoComplete}
+        />
+      </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingBottom: 15,
-    paddingTop: 10,
-    marginTop: 20,
-  },
-  locationSearchWrap: {
-    width: 310,
-  },
-  searchBarContainer: {
-    borderRadius: 50,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
   searchBar: {
+    display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     backgroundColor: "white",
+    borderRadius: 26,
+    fontWeight: "bold",
+    overflow: "hidden",
+    marginHorizontal: 30,
+    marginBottom: 20,
+  },
+  setLocationIcon:{
+    fontWeight: "bold",
+    fontSize: 12,
+    color: "#3AD6A7",
+    backgroundColor: "#FFF",
+    height: 52,
     borderRadius: 50,
+    width: 52,
+    paddingTop: 13,
+    zIndex:99,
   },
   googleAutoComplete:{
     container: {
-      borderRadius: 45,
+      marginLeft: -52,
     },
     textInputContainer: {
-      marginLeft: -5,
+      fontWeight: "bold",
+      paddingLeft: 52,
       height: 52,
     },
     textInput: {
-      borderRadius: 50,
       height: 52,
-      fontSize: 16,
-      backgroundColor: "rgba(0,0,0,0)",
+      fontSize: 14,
+      width: "100%",
+      overflow: "hidden",
+      fontWeight: "bold",
+      color: "#534E5A"
     },
+    poweredContainer:{
+      display: "none"
+    },
+    separator: {
+      height: 1,
+      backgroundColor: '#3AD6A7',
+    }
   }
 });
 

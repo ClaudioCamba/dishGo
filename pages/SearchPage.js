@@ -34,16 +34,20 @@ export default function SearchPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // borderWidth: 1,
+    // borderColor: 'yellow',
     display: "flex",
     flexDirection: "column",
     alignContent: "center",
     justifyContent: "flex-end",
     backgroundColor: "#3AD6A7",
-    paddingBottom: 0,
+    // paddingBottom: 0,
   },
   searchContainer: {
     top: 0,
-    borderWidth: 1,
+    paddingTop: 30,
+    // borderWidth: 1,
+    // borderColor: 'red',
     position: "absolute", 
     zIndex:999, 
     width: "100%"
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 335, 
-    height:294
+    height: 294
   },
   // headerWrap: {
   //   alignItems: "center",
