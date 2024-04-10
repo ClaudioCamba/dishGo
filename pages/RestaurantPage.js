@@ -64,10 +64,11 @@ export default function RestaurantPage({ route }) {
         <Text style={styles.sectionTitle}>Reviews</Text>
         <RenderReviews reviews={restaurantPlace.reviews} styles={styles} />
 
-<View style={{alignItems: "center"}}><TouchableOpacity style={styles.scrollToTopBtn} onPress={()=>{
-scrollRef.current?.scrollTo({
-  y: 0,})}}>
-    <Text style={{    color: 'grey'}}>Top</Text></TouchableOpacity></View>
+    <View style={styles.topView}>
+      <TouchableOpacity style={styles.scrollToTopBtn} onPress={()=> {
+      scrollRef.current?.scrollTo({y: 0,})}}>
+        <Text style={styles.topText}>Top</Text>
+    </TouchableOpacity></View>
       </View>
     </ScrollView>
   );
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
   { 
       backgroundColor: "#3AD6A7",
       color: "#FFF",
-      
   },
   opening_hours: {
     fontSize: 16,
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "left",
-    // justifyContent: "space-between",
     marginTop: 5,
     paddingHorizontal: 12,
     marginBottom: -8,
@@ -216,9 +215,17 @@ const styles = StyleSheet.create({
   },
   scrollToTopBtn:{
     borderWidth: 1,
-    borderColor: '#eeeeee',
+    borderColor: '#A9A9AC',
     paddingVertical: 10,
     paddingHorizontal: 18,
     borderRadius: 31,
+    width: "100%"
+  },
+  topView:{
+    alignItems: "center", 
+  },
+  topText: {
+    textAlign: "center", 
+    color: '#A9A9AC',
   }
 });

@@ -5,7 +5,7 @@ import RenderStarRating from "./RenderStarRating";
 
 export const RenderReviews = ({reviews, styles}) => {
     return reviews.map((review, index) => (
-      <Card key={index} style={styles.reviewCard}>
+      <Card key={index} style={styles.reviewCard} mode="contained">
         <Card.Content style={styles.reviewContainer}>
           <View style={styles.reviewHeader}>
             <Text style={styles.reviewAuthor}>{review.author_name}</Text>
