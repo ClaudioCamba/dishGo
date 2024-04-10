@@ -58,7 +58,7 @@ const SearchArea = () => {
   };
 
   return (
-      <View style={styles.searchBar} elevation={3}>
+      <View style={styles.searchBar} >
         <Pressable onPress={handleUserLocation}  style={styles.setLocationIcon}>
           <List.Icon color="#3AD6A7" icon="crosshairs" />
         </Pressable>
@@ -110,8 +110,14 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       paddingLeft: 44,
       height: 52,
+      borderRadius: 50,
+      backgroundColor:"#FFF",
+      zIndex:9,
+      elevation: 6
     },
     textInput: {
+      borderRadius: 50,
+      
       height: 52,
       fontSize: 14,
       width: "100%",

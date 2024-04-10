@@ -59,7 +59,7 @@ export default function SearchBar({userSearch, setUserSearch}) {
                 fontWeight="bold"
                 placeholderTextColor="#A9A9AC"
                 mode="bar"
-                elevation={1}
+                elevation={filterDishes.length > 0 ? 2 : 0}
                 selectionColor={'#3AD6A7'}
                 rippleColor="#3AD6A7"
                 iconColor="#3AD6A7"
