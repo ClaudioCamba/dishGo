@@ -21,7 +21,7 @@ export const GoogleMapView = (props) => {
       setMapRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: radius * 0.5,
+        latitudeDelta: radius * 0.0,
         longitudeDelta: radius * 0.5,
       });
       setLoading(false);
@@ -48,7 +48,7 @@ export const GoogleMapView = (props) => {
           style={{
             flex: 1,
             width: Dimensions.get("screen").width * 1,
-            height: Dimensions.get("screen").height * 0.65
+            height: Dimensions.get("screen").height - 210
           }}
           clusteringEnabled={true}
           provider={PROVIDER_GOOGLE}
@@ -64,8 +64,8 @@ export const GoogleMapView = (props) => {
         </MapView>
       </View>
         {pressedMarkerArr? (
-          <Callout style={{position: "absolute", width: 350, bottom: 0}}>
-             <ResultDishCard dish={pressedMarkerDish.dish} restaurants={[pressedMarkerDish.restaurant]} restaurantsPlaces={[pressedMarkerDish.place]} storeMapResults={storeMapResults} setMapResults={setMapResults}/>
+          <Callout style={{position: "absolute", width: "100%", bottom: 0}}>
+             <ResultDishCard onMapView={true} dish={pressedMarkerDish.dish} restaurants={[pressedMarkerDish.restaurant]} restaurantsPlaces={[pressedMarkerDish.place]} storeMapResults={storeMapResults} setMapResults={setMapResults}/>
         </Callout>
         ): null}
     </View>

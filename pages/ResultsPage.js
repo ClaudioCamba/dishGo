@@ -73,11 +73,11 @@ export default function ResultsPage({ navigation, route }) {
 
   return (
     <View style={styles.resultsContainer}>
-     <View style={styles.resultHeader}>
-      <Text style={styles.resultHeader}>
-          Results for: <Text style={{ color: "#3AD6A7" }}>{route.params.dish}</Text>
-      </Text>
-    </View>
+        <View style={styles.resultHeader}>
+          <Text style={styles.resultHeader}>
+              Results for: <Text style={{ color: "#3AD6A7" }}>{route.params.dish}</Text>
+          </Text>
+        </View>
       <ScrollView style={styles.scrollView}>
         <Button
           style={styles.mapViewButton}
@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
   },
   resultHeader: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#4C5B61",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
   },
   mapViewButton: {
     marginHorizontal: 26,
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     width: '50%',
     marginLeft: '25%',
     marginBottom: 20,
+    zIndex: 9
   },
   buttonLabel: {
     fontSize: 14,

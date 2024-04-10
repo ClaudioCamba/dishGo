@@ -21,7 +21,8 @@ const ResultDishCard = ({
   setMapResults,
   storeMapResults,
   all,
-  index
+  index,
+  onMapView = null,
 }) => {
   const navigation = useNavigation();
   const { location, radius } = useContext(LocationContext);
@@ -64,7 +65,7 @@ const ResultDishCard = ({
   }
 
   return (
-    <View style={[styles.card, all.length-1 === index ? styles.lastItem : null]}>
+    <View style={[styles.card, all ? all.length-1 === index ? styles.lastItem : null : null, onMapView ? styles.onMapView : null]}>
       <View style={styles.contentContainer}>
         <View style = {styles.leftSide}>
           <Image
@@ -160,6 +161,9 @@ const styles = StyleSheet.create({
   },
   lastItem: {
     marginBottom: 40,
+  },
+  onMapView: {
+    backgroundColor: "#4C5B61",
   }
 });
 
