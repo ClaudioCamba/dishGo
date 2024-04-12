@@ -3,12 +3,6 @@ import { Alert, StyleSheet, View, AppState, Text } from "react-native";
 import { Modal, Portal} from "react-native-paper";
 import { supabase } from "../lib/supabase";
 import { Button, Input } from "react-native-elements";
-import { CurrentPageContext } from "../context/CurrentPageContext";
-import { useRoute } from "@react-navigation/native";
-import { Session } from '@supabase/supabase-js'
-
-
-
 
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
@@ -24,9 +18,8 @@ AppState.addEventListener("change", (state) => {
 
 export default function Auth(props) {
 
-  const currentPage = useRoute()
-
-  const {isBusiness} = props
+  const {isBusiness = false} = props
+  const colorPage = isBusiness ? "#FFF" : "#4C5B61";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,17 +27,9 @@ export default function Auth(props) {
 
   // pop up
   const [visible, setVisible] = React.useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
   // pop up
-
-  //////
-
-  
-
-  /////
 
   async function signInWithEmail() {
     setLoading(true);
@@ -87,7 +72,7 @@ export default function Auth(props) {
       <Portal>
         <Modal
           visible={visible}
-          onDismiss={hideModal}
+          onDismiss={()=> setVisible(false)}
           contentContainerStyle={styles.popUpContainer}
         >
           <View style={styles.verticallySpaced2}>
@@ -96,38 +81,39 @@ export default function Auth(props) {
             </View>
   
             <Input
-              // inputContainerStyle={styles.inputInnerContainer}
-              // inputStyle={styles.input}
-              // containerStyle={styles.inputOuterContainer}
-              // labelStyle={styles.labels}
+              inputContainerStyle={isBusiness ? styles.inputInnerContainer : styles.inputInnerContainerUser}
+              inputStyle={{color: colorPage, ...styles.input}}
+              containerStyle={styles.inputOuterContainer}
+              labelStyle={isBusiness ? styles.labels : styles.labelsUser}
+              // labelStyle={isBusiness ? styles.labels : styles.labelsUser}
               label="Email"
               leftIcon={{
                 type: "font-awesome",
                 name: "envelope",
-                color: "#4C5B61",
+                color: colorPage,
                 size: 16,
               }}
               onChangeText={(text) => setSignInEmail(text)}
               value={signInEmail}
               placeholder="email@address.com"
               autoCapitalize={"none"}
-              inputStyle={styles.input}
+              // inputStyle={styles.input}
             />
           </View>
           <View style={styles.verticallySpaced}>
             <Input
-              // inputContainerStyle={styles.inputInnerContainer}
-              // inputStyle={styles.input}
-              // containerStyle={styles.inputOuterContainer}
-              // labelStyle={styles.labels}
+            inputContainerStyle={isBusiness ? styles.inputInnerContainer : styles.inputInnerContainerUser}
+            inputStyle={{color: colorPage, ...styles.input}}
+            containerStyle={styles.inputOuterContainer}
+            labelStyle={isBusiness ? styles.labels : styles.labelsUser}
               label="Password"
               leftIcon={{
                 type: "font-awesome",
                 name: "lock",
-                color: "#4C5B61",
+                color: colorPage,
                 size: 16,
               }}
-              inputStyle={styles.input}
+              // inputStyle={styles.input}
               onChangeText={(text) => setSignInPassword(text)}
               value={signInPassword}
               secureTextEntry={true}
@@ -150,15 +136,15 @@ export default function Auth(props) {
       <View style={styles.container}>
         <View style={[styles.verticallySpaced, styles.mt20]}>
           <Input
-            inputContainerStyle={styles.inputInnerContainer}
-            inputStyle={{color: "#FFF", ...styles.input}}
+            inputContainerStyle={isBusiness ? styles.inputInnerContainer : styles.inputInnerContainerUser}
+            inputStyle={{color: colorPage, ...styles.input}}
             containerStyle={styles.inputOuterContainer}
-            labelStyle={styles.labels}
+            labelStyle={isBusiness ? styles.labels : styles.labelsUser}
             label="Email"
             leftIcon={{
               type: "font-awesome",
               name: "envelope",
-              color: "#FFF",
+              color: colorPage,
               size: 16,
             }}
             onChangeText={(text) => setEmail(text)}
@@ -169,15 +155,15 @@ export default function Auth(props) {
         </View>
         <View style={styles.verticallySpaced}>
           <Input
-            inputContainerStyle={styles.inputInnerContainer}
-            inputStyle={{color: "#FFF", ...styles.input}}
+            inputContainerStyle={isBusiness ? styles.inputInnerContainer : styles.inputInnerContainerUser}
+            inputStyle={{color: colorPage, ...styles.input}}
             containerStyle={styles.inputOuterContainer}
-            labelStyle={styles.labels}
+            labelStyle={isBusiness ? styles.labels : styles.labelsUser}
             label="Password"
             leftIcon={{
               type: "font-awesome",
               name: "lock",
-              color: "#FFF",
+              color: colorPage,
               size: 16,
             }}
             onChangeText={(text) => setPassword(text)}
@@ -198,14 +184,14 @@ export default function Auth(props) {
           />
         </View>
         <View style={styles.signInView}>
-          <Text style={styles.signInText}>Already have an account?</Text>
+          <Text style={isBusiness ? styles.signInText : styles.signInTextUser}>Already have an account?</Text>
           <Button
             buttonStyle={styles.signInButton}
             titleStyle={styles.signInButtonText}
             title="Sign in"
             disabled={loading}
             onPress={() => {
-              showModal();
+              setVisible(true)
             }}
           />
         </View>
@@ -223,13 +209,19 @@ const styles = StyleSheet.create({
   popUpContainer: {
     paddingHorizontal: 20,
     paddingVertical: 30,
-    borderRadius: 38,
+    borderRadius: 24,
     backgroundColor: "white",
     margin: 10,
     alignItems:'center'
   },
   labels: {
     color: "#FFF",
+    fontSize: 12,
+    fontWeight: "700",
+    letterSpacing: 0.8,
+  },
+  labelsUser: {
+    color: "#4C5B61",
     fontSize: 12,
     fontWeight: "700",
     letterSpacing: 0.8,
@@ -241,6 +233,10 @@ const styles = StyleSheet.create({
   inputInnerContainer: {
     borderBottomWidth: 2,
     borderColor: "#FFF",
+  },
+  inputInnerContainerUser: {
+    borderBottomWidth: 2,
+    borderColor: "#4C5B61",
   },
   input: {
     textDecorationLine: "none",
@@ -254,11 +250,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   signUpButton: {
-    width: 93,
+    width: 100,
+    height: 40,
     backgroundColor: "#3AD6A7",
     borderRadius: 29,
     marginTop:10,
-    marginBottom: 30,
+    marginBottom: 40,
   },
   signUpButtonText: {
     color: "#FFF",
@@ -278,15 +275,26 @@ const styles = StyleSheet.create({
     fontSize: 14,
     letterSpacing: 0.6,
   },
+  signInTextUser: {
+    color: "#4C5B61",
+    fontWeight: "bold",
+    fontSize: 14,
+    letterSpacing: 0.6,
+  },
   signInButton: {
-    width: 93,
-    backgroundColor: "rgba(0, 0, 0, 0)",
+    width: 100,
+    height: 40,
+    backgroundColor: "#FFF",
     borderRadius: 29,
+    marginTop:20,
+    marginBottom: 40,
+    borderWidth: 2,
+    borderColor: "#4C5B61",
   },
   signInButtonText: {
-    color: "#3AD6A7",
+    color: "#4C5B61",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 14,
     letterSpacing: 0.6,
   },
   verticallySpaced: {
@@ -296,9 +304,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   signInButton2: {
-    width: 93,
+    width: 100,
+    height: 40,
     backgroundColor: "#4C5B61",
     borderRadius: 29,
+    marginTop:20,
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: "#4C5B61",
   },
   verticallySpaced2: {
     alignSelf: "stretch",

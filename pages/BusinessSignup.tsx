@@ -9,8 +9,6 @@ import { Session } from '@supabase/supabase-js'
 export default function BusinessSignUp() {
   const [session, setSession] = useState<Session | null>(null)
 
-  const isBusiness = true
-
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
@@ -30,7 +28,7 @@ export default function BusinessSignUp() {
         <View style={styles.subHeaderView}>
           <Text style={styles.subHeaderText}>Sign up and gain access to customers waiting to find your food!</Text>
         </View>
-        <Auth isBusiness={isBusiness}/>
+        <Auth isBusiness={true}/>
       </> }
     </ScrollView>
   )
