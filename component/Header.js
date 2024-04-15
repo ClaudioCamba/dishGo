@@ -43,7 +43,11 @@ export default function Header() {
         <View>
           {session && session.user ? (
             <>
+            <Pressable
+             onPress={() => navigation.navigate("HomePageBusiness")}
+             >
                <AvatarImage User={User} />
+               </Pressable>
             </>
           ) : (
             <Pressable

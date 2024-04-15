@@ -20,6 +20,7 @@ export default function LandingPage({ navigation }) {
     });
 
     setCurrentPage(CurrentScreen.name);
+    // console.log(session.user.user_metadata.isBusiness)
   }, []);
 
   return (
@@ -42,15 +43,19 @@ export default function LandingPage({ navigation }) {
         </Pressable>
 
         {session && session.user ? (
-          <>
+          <>{
+            session.user.user_metadata.isBusiness ? 
             <Pressable
-              style={{backgroundColor: '#DC143C', ...styles.button}}
-              onPress={() => supabase.auth.signOut()}
-            >
-              <Text style={{ fontWeight: "bold", fontSize: 18, color: "#FFF" }}>
-                Sign Out
-              </Text>
-            </Pressable>
+            style={{backgroundColor: '#3AD6A7', ...styles.button}}
+            onPress={() => navigation.navigate("HomePageBusiness")}>
+            <Text style={{ fontWeight: "bold", fontSize: 18, color: "#FFF" }}>Account</Text>
+          </Pressable> : 
+          <Pressable
+          style={{backgroundColor: '#DC143C', ...styles.button}}
+          onPress={() => () => supabase.auth.signOut()}>
+          <Text style={{ fontWeight: "bold", fontSize: 18, color: "#FFF" }}>Sign Out</Text>
+        </Pressable>
+          }
           </>
         ) : (
           <Pressable
