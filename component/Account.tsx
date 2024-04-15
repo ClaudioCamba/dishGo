@@ -5,15 +5,17 @@ import { Button, Input } from "react-native-elements";
 import { Session } from "@supabase/supabase-js";
 import Avatar from "./Avatar";
 import { UserContext } from "../context/UserContext";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function Account({ session }: { session: Session }) {
-
+  const currentPage = useRoute();
   const navigation = useNavigation()
   const [loading, setLoading] = useState(true);
   // const [website, setWebsite] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
   const { User, setUser } = useContext(UserContext);
+
+  console.log(currentPage)
 
   useEffect(() => {
     if (session) getProfile();

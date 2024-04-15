@@ -73,7 +73,7 @@ export default function Auth(props) {
         <Modal
           visible={visible}
           onDismiss={()=> setVisible(false)}
-          contentContainerStyle={styles.popUpContainer}
+          contentContainerStyle={isBusiness ? styles.popUpContainer : styles.popUpContainerUser}
         >
           <View style={styles.verticallySpaced2}>
             <View style={styles.textContainer}>
@@ -123,8 +123,8 @@ export default function Auth(props) {
           </View>
           <View>
             <Button
-              titleStyle={styles.signUpButtonText}
-              buttonStyle={styles.signInButton2}
+              titleStyle={isBusiness ? styles.signUpButtonText : styles.signUpButtonTextUser}
+              buttonStyle={isBusiness ? styles.signInButton2 : styles.signInButton2User}
               title="Sign In"
               disabled={loading}
               onPress={() => signInWithEmail()}
@@ -176,7 +176,7 @@ export default function Auth(props) {
 
         <View style={styles.signUpView}>
           <Button
-            titleStyle={styles.signUpButtonText}
+            titleStyle={isBusiness ? styles.signUpButtonText : styles.signUpButtonTextUser}
             buttonStyle={styles.signUpButton}
             title="Sign Up"
             disabled={loading}
@@ -186,8 +186,8 @@ export default function Auth(props) {
         <View style={styles.signInView}>
           <Text style={isBusiness ? styles.signInText : styles.signInTextUser}>Already have an account?</Text>
           <Button
-            buttonStyle={styles.signInButton}
-            titleStyle={styles.signInButtonText}
+            buttonStyle={isBusiness ? styles.signInButton : styles.signInButtonUser}
+            titleStyle={isBusiness ? styles.signInButtonText : styles.signInButtonTextUser}
             title="Sign in"
             disabled={loading}
             onPress={() => {
@@ -206,11 +206,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
+  popUpContainerUser: {
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    borderRadius: 24,
+    backgroundColor: "#FFF",
+    margin: 10,
+    alignItems:'center'
+  },
   popUpContainer: {
     paddingHorizontal: 20,
     paddingVertical: 30,
     borderRadius: 24,
-    backgroundColor: "white",
+    backgroundColor: "#4C5B61",
     margin: 10,
     alignItems:'center'
   },
@@ -258,11 +266,18 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   signUpButtonText: {
-    color: "#FFF",
+    color: "#4C5B61",
     fontWeight: "bold",
     fontSize: 14,
     letterSpacing: 0.6,
   },
+  signUpButtonTextUser: {
+    color: "#FFF",
+    fontWeight: "bold",
+    fontSize: 14,
+    letterSpacing: 0.6,
+  }
+  ,
   signInView: {
     width: "100%",
     display: "flex",
@@ -284,6 +299,16 @@ const styles = StyleSheet.create({
   signInButton: {
     width: 100,
     height: 40,
+    backgroundColor: "#4C5B61",
+    borderRadius: 29,
+    marginTop:20,
+    marginBottom: 40,
+    borderWidth: 2,
+    borderColor: "#FFF",
+  },
+  signInButtonUser: {
+    width: 100,
+    height: 40,
     backgroundColor: "#FFF",
     borderRadius: 29,
     marginTop:20,
@@ -292,6 +317,12 @@ const styles = StyleSheet.create({
     borderColor: "#4C5B61",
   },
   signInButtonText: {
+    color: "#FFF",
+    fontWeight: "bold",
+    fontSize: 14,
+    letterSpacing: 0.6,
+  },
+  signInButtonTextUser: {
     color: "#4C5B61",
     fontWeight: "bold",
     fontSize: 14,
@@ -304,6 +335,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   signInButton2: {
+    width: 100,
+    height: 40,
+    backgroundColor: "#FFF",
+    borderRadius: 29,
+    marginTop:20,
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: "#FFF",
+  },
+  signInButton2User: {
     width: 100,
     height: 40,
     backgroundColor: "#4C5B61",
