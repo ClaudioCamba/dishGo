@@ -23,10 +23,11 @@ export default function HomePage({ session, isBusiness }: { session: Session, is
     try {
       const { data, error, status } = await supabase
         .from("profiles")
-        .upsert({is_business: isBusiness, id: session?.user.id,})
-        .eq("id", session.user.id)
-        .select('*')
-        .single();
+        .select()
+        // .upsert({is_business: isBusiness, id: session?.user.id,})
+        // .eq("id", session.user.id)
+        // .select('*')
+        // .single();
 
       if (error && status !== 406) {
         throw error;

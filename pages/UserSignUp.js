@@ -23,14 +23,12 @@ export default function UserSignUp() {
     <ScrollView style = {styles.container}>
       {session && session.user ? (
         <Account key={session.user.id} session={session} />
-      ) : (
-        <>
-               <><View style = {{backgroundColor: "#4C5B61"}}>
+      ) : (<>
+          <View style = {{backgroundColor: "#4C5B61"}}>
           <Text style={styles.headerText}>Sign Up Today!</Text>
-        </View></>
+          </View>
           <Auth />
-        </>
-      )}
+      </>)}
     </ScrollView>
   );
 }

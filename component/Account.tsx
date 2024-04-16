@@ -15,8 +15,6 @@ export default function Account({ session }: { session: Session }) {
   const [avatarUrl, setAvatarUrl] = useState("");
   const { User, setUser } = useContext(UserContext);
 
-  console.log(currentPage)
-
   useEffect(() => {
     if (session) getProfile();
   }, [session]);
@@ -104,13 +102,18 @@ export default function Account({ session }: { session: Session }) {
           }}
         />
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Input style = {styles.input} labelStyle={styles.labels} 
-        leftIcon={{
-              type: "font-awesome",
-              name: "envelope",
-              color: "#FFF",
-              size: 16,
-            }} label="Email" value={session?.user?.email} disabled />
+
+        {
+          session?.user?.user_metadata?.isBusiness ? 
+          <Input style = {styles.input} labelStyle={styles.labels} 
+          leftIcon={{ type: "font-awesome", name: "envelope", color: "#FFF", size: 16,}} 
+          label="Email" value={session?.user?.email} disabled /> 
+          :
+          <Input style = {styles.inputUser} labelStyle={styles.labelsUser} 
+          leftIcon={{ type: "font-awesome", name: "envelope", color: "#4C5B61", size: 16,}} 
+          label="Email" value={session?.user?.email} disabled />
+        }
+
       </View>
 
 <View style={styles.buttonContainer}>
@@ -213,6 +216,18 @@ const styles = StyleSheet.create({
   },
   labels: {
     color: "#FFF",
+    fontSize: 12,
+    fontWeight: "700",
+    letterSpacing: 0.8,
+  },
+  inputUser: {
+    textDecorationLine: "none",
+    paddingLeft: 24,
+    fontSize: 14,
+    color: '#4C5B61'
+  },
+  labelsUser: {
+    color: "#4C5B61",
     fontSize: 12,
     fontWeight: "700",
     letterSpacing: 0.8,
