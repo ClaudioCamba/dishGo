@@ -28,7 +28,7 @@
     "@types/react": "~18.2.45",
     "axios": "^1.6.7",
     "base64-arraybuffer": "^1.0.2",
-    "expo": "^50.0.15",
+    "expo": "^50.0.17",
     "expo-font": "~11.10.3",
     "expo-image-picker": "^14.7.1",
     "expo-location": "~16.5.5",
